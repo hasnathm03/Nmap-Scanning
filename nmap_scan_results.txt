@@ -1,0 +1,47 @@
+TASK 1 - NMAP NETWORK SCAN RESULTS
+Submitted By: Hasnat Haider Mir
+
+
+Target IP   : 192.168.1.11
+Date        : 08-08-2026
+Note        : Original target (192.168.56.101) was unreachable, so
+              the local host machine's own network interface was
+              scanned instead.
+
+1. BASIC SCAN - nmap 192.168.1.11
+
+PORT     STATE SERVICE
+22/tcp   open  ssh
+80/tcp   open  http
+3389/tcp open  ms-wbt-server
+3390/tcp open  dsc
+
+
+2. SERVICE VERSION SCAN - nmap -sV 192.168.1.11
+
+PORT     STATE SERVICE       VERSION
+22/tcp   open  ssh           OpenSSH 10.2p1 Ubuntu
+80/tcp   open  http          Apache httpd 2.4.66
+3389/tcp open  ms-wbt-server Microsoft Terminal Service
+3390/tcp open  ms-wbt-server xrdp
+
+
+3. OS DETECTION SCAN - sudo nmap -O 192.168.1.11
+
+No exact OS match. TCP/IP fingerprint indicates Linux (consistent
+with host's actual Ubuntu OS).
+
+OPEN PORT ANALYSIS
+
+Port 22 (SSH) - Remote login access. Risk: moderate; target of
+brute-force attacks if password auth/weak passwords used.
+
+Port 80 (HTTP) - Unencrypted web service. Risk: moderate-high;
+traffic not encrypted, risk depends on hosted app.
+
+Port 3389 (RDP) - Remote desktop access. Risk: high; common
+brute-force/exploit target (e.g., BlueKeep).
+
+Port 3390 (xrdp) - Linux remote desktop service. Risk: high; same
+category as RDP, unusual to have two remote-access ports open.
+
